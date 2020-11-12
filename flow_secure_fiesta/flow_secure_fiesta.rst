@@ -204,33 +204,104 @@ Fiestaアプリケーションを保護するセキュリティポリシーを�
 #. **保存とモニター(Save and Monitor)** をクリックしてポリシーを保存します。
 
 
-カテゴリ値の割り当て
-.........................
+ブループリントの構築
+..........................
 
-ここで、以前に作成したカテゴリをFiestaブループリントからプロビジョニング済みのVMに適用します。
-フローカテゴリはCalmのブループリントの一部として割り当てることもできますが、この演習の目的は、既存の仮想マシンへのカテゴリ割り当て方法を理解することです。
+上で作成したFlowによるセキュリティポリシーを実際に動作させてみます。WebサーバとDBサーバの複数VMによるブループリントを構築し、ブループリント内でアプリケーションに対してカテゴリを付与します。最終的にこのブループリントをIT利用者に対して公開することで、セキュリティポリシーの自動・強制適用が可能となり、仮想基盤、データセンターネットワークに渡る運用プロセスの自動化が可能となります。
 
-#. **Prism Central右上の** の :fa:`bars` **> 仮想インフラ(Virtual Infrastructure) > 仮想マシン(VMs)** と進みます。
+#. **Prism Central** で、 :fa:`bars` **> サービス > Calm** を選択します。
 
-#. **フィルター(Filters)** をクリックし、 Initials AHV Fiesta VMs ラベルを選択して、仮想マシンを表示します。
+   .. figure:: images/1_access_calm.png
 
-   .. figure:: images/15.png
+#. 左側のツールバーの **Blueprints** を選択して、Calmのブループリントを表示および管理します。
 
-#. チェックボックスを使用して、アプリケーション(WebとDB)に関連付けれらたVMを選択して、 **アクション(Actions) > カテゴリを管理(Manage Categories)** をクリックします。
+   .. note::
 
-   .. figure:: images/16.png
+     アイコンにマウスを当てるとメニューがテキストで表示されます。
 
-#. 検索バーで **AppType:**\ *Initials*-**Fiesta** を指定して、 **保存(Save)** アイコンをクリックします。
+#. `こちら <https://raw.githubusercontent.com/nutanixworkshops/EnterprisePrivateCloud_Bootcamp-Japanese/master/dayinlife/Fiesta-Multi.json>`_ からテンプレートとなるブループリントをローカルマシンにダウンロードします。(ブラウザの機能においてファイルを別名ダウンロードしてください。)
 
-   .. figure:: images/16a.png
+#. **ブループリントのアップロード** をクリックし、ダウンロードしたjsonファイル(Fiesta-Multi.json)を選択します。
 
-#. 続いて、*nodereact VM* VMのみを選択して **アクション(Actions) > カテゴリを管理(Manage Categories)** から **AppTier:**\ *Initials*-**Web** カテゴリーを指定し、 **Save** をクリックします。
+#. 以下の項目を記入します。
 
-   .. figure:: images/17.png
+   - **ブループリント名** - *あなたのイニシャル*-Fiesta
+   - **プロジェクト** - *あなたのイニシャル*-Project
 
-#. 同様に ステップ5 を繰り返し、**MySQL VM** を **AppTier:**\ *Initials*-**DB** カテゴリーに指定します。
+#. 以下の項目を記入します。
 
-#. 最後に、**Windows Tools VM** に対して ステップ 5 の操作を行い **Environment:Dev** カテゴリーに指定します。
+   - **説明** - ブループリントの説明を書きます。(任意)
+   - **プロジェクト** - *あなたのイニシャル*-Project(変更なし)
+
+#. ブループリントを起動するには、最初にネットワークをVMに割り当てる必要があります。 **NodeReact_AHV** のアイコンをクリックし、画面右側の **仮想マシン** タブから次の項目を設定します。
+
+   - **NIC 1** - **Primary**
+   - **プライベートIP** - **動的**
+   - **カテゴリ**
+   - AppType: *あなたのイニシャル*-Fiesta
+   - AppTier: *あなたのイニシャル*-Web
+
+#. 次に **MySQLAHV** のアイコンをクリックし、画面右側の **仮想マシン** タブから次の項目を設定します。
+
+#. 同じく **仮想マシン** タブから **カテゴリ** メニューにおいて以下を選択します。
+
+   - **NIC 1** - **Primary**
+   - **プライベートIP** - **動的**
+   - **カテゴリ**
+   - AppType: *あなたのイニシャル*-Fiesta
+   - AppTier: *あなたのイニシャル*-DB
+
+#. **認証情報** をクリックし、ブループリントによってプロビジョニングされるCentOS VMへの認証に使用される秘密鍵を定義します。
+
+   .. figure:: images/27b.png
+
+#. **CENTOS** の認証情報で"Edit"をクリックし、以下の値を **SSH秘密キー** に入力します。
+
+   ::
+
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEowIBAAKCAQEAii7qFDhVadLx5lULAG/ooCUTA/ATSmXbArs+GdHxbUWd/bNG
+      ZCXnaQ2L1mSVVGDxfTbSaTJ3En3tVlMtD2RjZPdhqWESCaoj2kXLYSiNDS9qz3SK
+      6h822je/f9O9CzCTrw2XGhnDVwmNraUvO5wmQObCDthTXc72PcBOd6oa4ENsnuY9
+      HtiETg29TZXgCYPFXipLBHSZYkBmGgccAeY9dq5ywiywBJLuoSovXkkRJk3cd7Gy
+      hCRIwYzqfdgSmiAMYgJLrz/UuLxatPqXts2D8v1xqR9EPNZNzgd4QHK4of1lqsNR
+      uz2SxkwqLcXSw0mGcAL8mIwVpzhPzwmENC5OrwIBJQKCAQB++q2WCkCmbtByyrAp
+      6ktiukjTL6MGGGhjX/PgYA5IvINX1SvtU0NZnb7FAntiSz7GFrODQyFPQ0jL3bq0
+      MrwzRDA6x+cPzMb/7RvBEIGdadfFjbAVaMqfAsul5SpBokKFLxU6lDb2CMdhS67c
+      1K2Hv0qKLpHL0vAdEZQ2nFAMWETvVMzl0o1dQmyGzA0GTY8VYdCRsUbwNgvFMvBj
+      8T/svzjpASDifa7IXlGaLrXfCH584zt7y+qjJ05O1G0NFslQ9n2wi7F93N8rHxgl
+      JDE4OhfyaDyLL1UdBlBpjYPSUbX7D5NExLggWEVFEwx4JRaK6+aDdFDKbSBIidHf
+      h45NAoGBANjANRKLBtcxmW4foK5ILTuFkOaowqj+2AIgT1ezCVpErHDFg0bkuvDk
+      QVdsAJRX5//luSO30dI0OWWGjgmIUXD7iej0sjAPJjRAv8ai+MYyaLfkdqv1Oj5c
+      oDC3KjmSdXTuWSYNvarsW+Uf2v7zlZlWesTnpV6gkZH3tX86iuiZAoGBAKM0mKX0
+      EjFkJH65Ym7gIED2CUyuFqq4WsCUD2RakpYZyIBKZGr8MRni3I4z6Hqm+rxVW6Dj
+      uFGQe5GhgPvO23UG1Y6nm0VkYgZq81TraZc/oMzignSC95w7OsLaLn6qp32Fje1M
+      Ez2Yn0T3dDcu1twY8OoDuvWx5LFMJ3NoRJaHAoGBAJ4rZP+xj17DVElxBo0EPK7k
+      7TKygDYhwDjnJSRSN0HfFg0agmQqXucjGuzEbyAkeN1Um9vLU+xrTHqEyIN/Jqxk
+      hztKxzfTtBhK7M84p7M5iq+0jfMau8ykdOVHZAB/odHeXLrnbrr/gVQsAKw1NdDC
+      kPCNXP/c9JrzB+c4juEVAoGBAJGPxmp/vTL4c5OebIxnCAKWP6VBUnyWliFhdYME
+      rECvNkjoZ2ZWjKhijVw8Il+OAjlFNgwJXzP9Z0qJIAMuHa2QeUfhmFKlo4ku9LOF
+      2rdUbNJpKD5m+IRsLX1az4W6zLwPVRHp56WjzFJEfGiRjzMBfOxkMSBSjbLjDm3Z
+      iUf7AoGBALjvtjapDwlEa5/CFvzOVGFq4L/OJTBEBGx/SA4HUc3TFTtlY2hvTDPZ
+      dQr/JBzLBUjCOBVuUuH3uW7hGhW+DnlzrfbfJATaRR8Ht6VU651T+Gbrr8EqNpCP
+      gmznERCNf9Kaxl/hlyV5dZBe/2LIK+/jLGNu9EJLoraaCBFshJKF
+      -----END RSA PRIVATE KEY-----
+
+#. **保存** をクリックし、終了後 **戻る** をクリックします。
+
+#. 秘密変数の値が空であることを示す **警告** が表示されます。これは、ブループリントを保存する際に秘密変数に値が入れられないため、この警告が発生します。しかし、この変数はユーザがブループリントからアプリケーションを起動する際に入力させる変数のため無視可能です。警告によって、ユーザーがブループリントを起動したり公開したりすることができなくなることはありません。その他の警告や赤いエラーが表示された場合は、先に進む前に問題を解決してください。
+
+ブループリントの起動
+..........................
+
+#. **起動** ボタンをクリックして、以下のように入力してください。
+
+    - **アプリケーションの名前** - *あなたのイニシャル*-Fiesta
+    - **db_password** - Nutanix/4u
+
+#. **作成** をクリックすると、アプリケーションのページが表示されます。
+
+#. アプリケーションが **プロビジョニング** 状態から **実行中** 状態に変わるまで数分待ちます。 **エラー** 状態に変わった場合は、 **監査** タブに移動し、 **作成** アクションを展開して、問題のトラブルシューティングを開始します。
 
 セキュリティポリシーの監視と適用
 +++++++++++++++++++++++++++++++++++++++++
