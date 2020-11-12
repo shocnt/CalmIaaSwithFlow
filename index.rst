@@ -7,6 +7,7 @@
   :hidden:
 
   labsetup/labsetup
+  tools_vms/windows_tools_vm.rst
 
 .. toctree::
   :maxdepth: 2
@@ -18,11 +19,19 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: 追加の演習
+  :caption: eScriptによる拡張
   :name: _additional_calm_labs
   :hidden:
 
   calm_escript/calm_escript
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Flowによるアプリケーション保護
+  :name: _flow_track
+  :hidden:
+
+  flow_secure_fiesta/flow_secure_fiesta
 
 .. toctree::
   :maxdepth: 2
