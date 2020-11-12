@@ -24,7 +24,7 @@ Windows Tools VMの構築
 
 以下の情報を入力します。
 
-- **Name** - *Initials*-Windows-ToolsVM
+- **Name** - *あなたのイニシャル*-Windows-ToolsVM
 - **vCPU(s)** - 1
 - **Number of Cores per vCPU** - 2
 - **Memory** - 4 GiB
