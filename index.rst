@@ -60,12 +60,13 @@ Nutanix Calm IaaS Bootcampへようこそ!
 アジェンダ
 ++++++
 
-- Nutanix Calm メインの演習
-    - Calm: ラボセットアップ
+- Nutanix Calmラボ
+    - ラボセットアップ
     - Calm: Windows IaaSサービスの構築
-
-- 追加の演習
     - Calm: eScript
+
+- Nutanix Flowラボ
+    - Flow: アプリケーションの保護
 
 - Appendix
     - 用語集 
