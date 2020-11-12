@@ -8,15 +8,6 @@
 
   labsetup/labsetup
 
-
-.. toctree::
-  :maxdepth: 2
-  :caption: LinuxによるIaaSサービス
-  :name: _calm_linux_track
-  :hidden:
-
-  calm_linux_track/calm_iaas_linux/calm_iaas_linux
-
 .. toctree::
   :maxdepth: 2
   :caption: WindowsによるIaaSサービス
@@ -32,14 +23,6 @@
   :hidden:
 
   calm_escript/calm_escript
-
-.. toctree::
-  :maxdepth: 2
-  :caption: 任意の演習
-  :name: _optional_labs
-  :hidden:
-
-  calm_enable/calm_enable
 
 .. toctree::
   :maxdepth: 2
@@ -70,15 +53,11 @@ Nutanix Calm IaaS Bootcampへようこそ!
 
 - Nutanix Calm メインの演習
     - Calm: ラボセットアップ
-    - Calm: Linux IaaSサービスの構築
     - Calm: Windows IaaSサービスの構築
 
 - 追加の演習
-    - Calm: DSL
+    - Calm: eScript
 
-- 任意の演習
-    - Calm: 有効化
-    
 - Appendix
     - 用語集 
 
