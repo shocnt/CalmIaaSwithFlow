@@ -1,13 +1,13 @@
 .. _windows_tools_vm:
 
 ----------------
-Windows Tools VM
+Windows Tools VMの構築
 ----------------
 
-Overview
+はじめに
 +++++++++
 
-This Windows Server 2012 R2 image comes pre-installed with a number of tools, including:
+演習中試験クライアントとして用いるWindows 2012 R2のマシンを構築します。以下のツール群がインストールされています。
 
 - Microsoft Remote Server Administration Tools (RSAT)
 - PuTTY, CyberDuck, WinSCP
@@ -17,40 +17,33 @@ This Windows Server 2012 R2 image comes pre-installed with a number of tools, in
 - pgAdmin
 - Chocolatey Package Manager
 
-Deploy this VM on your assigned cluster if directed to do so as part of **Lab Setup**.
-
-.. raw:: html
-
-  <strong><font color="red">Only deploy the VM once, it does not need to be cleaned up as part of any lab completion.</font></strong>
-
-Deploying Tools VM
+構築手順
 ++++++++++++++++++
 
-In **Prism Central** > select :fa:`bars` **> Virtual Infrastructure > VMs**, and click **Create VM**.
+#. **Prism Central** > select :fa:`bars` **> 仮想インフラ > 仮想マシン** において、 **仮想マシンを作成** をクリックします。
 
-Fill out the following fields:
+以下の情報を入力します。
 
 - **Name** - *Initials*-Windows-ToolsVM
-- **Description** - (Optional) Description for your VM.
 - **vCPU(s)** - 1
 - **Number of Cores per vCPU** - 2
 - **Memory** - 4 GiB
 
 - Select **+ Add New Disk**
-    - **Type** - DISK
-    - **Operation** - Clone from Image Service
-    - **Image** - ToolsVM.qcow2
-    - Select **Add**
+    - **タイプ** - DISK
+    - **オペレーション** - イメージサービスからクローン
+    - **イメージ** - WinToolsVM.qcow2
+    - **Add** を選びます。
 
 - Select **Add New NIC**
-    - **VLAN Name** - Secondary
-    - Select **Add**
+    - **Network Name** - Secondary
+    - **追加** を選びます。
 
-Click **Save** to create the VM.
+#. **Save** をクリックし仮想マシンを作成します。
 
-Power on the VM.
+#. 作成した仮想マシンを選択し、 **アクション > パワーオン** で電源を入れます。 
 
-Login to the VM via RDP or Console session, using the following credentials:
+#. RDPもしくはコンソール接続にて作成した仮想マシンにログインします。
 
-- **Username** - NTNXLAB\\Administrator
-- **password** - nutanix/4u
+- **ユーザ名** - NTNXLAB\\Administrator
+- **パスワード** - nutanix/4u
