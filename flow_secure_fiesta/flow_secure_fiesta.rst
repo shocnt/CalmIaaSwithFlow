@@ -355,7 +355,7 @@ Flowによる可視化
 
 #. NodeReact VMへのpingトラフィックがブロックされた事を確認します。
 
-     .. figure:: images/37_1.png
+   .. figure:: images/37_1.png
 
 #. クライアントVMがWebブラウザとWebサーバーのIPアドレスを使用して、Fiestaアプリケーションに引き続きアクセスできることを確認します。
 
@@ -370,7 +370,7 @@ Splunkによるポリシーヒットログの確認
    - **ユーザ名** - admin
    - **パスワード** - password
 
-     .. figure:: images/login.png
+   .. figure:: images/login.png
 
 #. サーチ画面に以下内容を入力し、虫眼鏡マークをクリックします。
 
@@ -378,7 +378,7 @@ Splunkによるポリシーヒットログの確認
 
       source="udp:10514" sourcetype="syslog" flow-hitCount* "DIRECTION=INBOUND" "src=(あなたのイニシャル-Windows-ToolsVMのIPアドレス)"
 
-     .. figure:: images/search.png
+   .. figure:: images/search.png
 
 #. 
 
