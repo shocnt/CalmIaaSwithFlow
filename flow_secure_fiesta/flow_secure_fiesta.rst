@@ -372,7 +372,7 @@ Splunkによるポリシーヒットログの確認
 
    .. figure:: images/login.png
 
-#. サーチ画面に以下内容を入力し、虫眼鏡マークをクリックします。
+#. サーチ画面に以下内容を入力し、虫眼鏡マークをクリックします。セキュリティポリシーによりドロップされたWindows-ToolsVMからのトラフィックがログとして残されていることを確認します。
 
    ::
 
@@ -380,7 +380,11 @@ Splunkによるポリシーヒットログの確認
 
    .. figure:: images/search.png
 
-#. 
+#. サーチ画面に以下内容を入力し、"視覚エフェクト"タブをクリックします。セキュリティポリシーによりドロップされたNodeReact VM向けトラフィックを多い順に表示することが出来ます。
+
+   ::
+      
+      source="udp:10514" sourcetype="syslog" flow-hitCount* "DIRECTION=INBOUND" "dst=(NodeReact VMのIPアドレス)" "ACTION=DROP"| top limit=20 SRC
 
 まとめ
 +++++++++
