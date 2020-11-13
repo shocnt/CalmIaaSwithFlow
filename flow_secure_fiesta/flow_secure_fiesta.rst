@@ -359,6 +359,28 @@ Flowによる可視化
 
 #. クライアントVMがWebブラウザとWebサーバーのIPアドレスを使用して、Fiestaアプリケーションに引き続きアクセスできることを確認します。
 
+Splunkによるポリシーヒットログの確認
++++++++++++++++++++++++++++++++++++++++++
+
+*あなたのイニシャル*-Fiestaのセキュリティポリシーにおいてポリシーヒットログを有効にしましたので、このポリシーによりsyslogサーバに対してログが送られます。
+ここではSplunkにログインし、ポリシーヒットログを確認します。
+
+#. ブラウザでhttp://"SplunkインスタンスのIPアドレス":8000/ja-JP/に移動します。Splunkインスタンスのアドレスはクラスタ割当表に記載されています。ログイン情報は以下です。
+
+   - **ユーザ名** - admin
+   - **パスワード** - password
+
+     .. figure:: images/login.png
+
+#. サーチ画面に以下内容を入力し、虫眼鏡マークをクリックします。
+
+   .. code-block:: shell
+      source="udp:10514" sourcetype="syslog" flow-hitCount* "DIRECTION=INBOUND" "src=(あなたのイニシャル-Windows-ToolsVMのIPアドレス)"
+
+     .. figure:: images/search.png
+
+#. 
+
 まとめ
 +++++++++
 
