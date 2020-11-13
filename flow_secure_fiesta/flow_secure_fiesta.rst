@@ -386,6 +386,8 @@ Splunkによるポリシーヒットログの確認
       
       source="udp:10514" sourcetype="syslog" flow-hitCount* "DIRECTION=INBOUND" "dst=(NodeReact VMのIPアドレス)" "ACTION=DROP"| top limit=20 SRC
 
+   .. figure:: images/ranking.png
+
 まとめ
 +++++++++
 
